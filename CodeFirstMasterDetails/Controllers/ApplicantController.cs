@@ -199,6 +199,7 @@ namespace CodeFirstMasterDetails.Controllers
 			}
             return RedirectToAction("Index");
         }
+
     }
 }
 

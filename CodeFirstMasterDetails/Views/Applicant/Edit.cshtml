@@ -37,6 +37,7 @@
                 <div class="form-group form-check">
                     <label class="form-check-label">
                         <input class="form-check-input" asp-for="IsAvilable" /> @Html.DisplayNameFor(model => model.IsAvilable)
+                        <input type="submit" value="Add" name="btn" class="btn btn-outline-info" formnovalidate />
                     </label>
                 </div>
             </div>
@@ -66,7 +67,6 @@
                                     <input asp-for="Exprience[i].YearOfExp" class="form-control" />
                                 </td>
                                 <td>
-                                    <input type="submit" value="Add" name="btn" class="btn btn-outline-info" formnovalidate />
                                     <input type="submit" value="Remove" onclick="Remove(this)" name="btn" class="btn btn-dark" formnovalidate />
                                 </td>
                             </tr>
