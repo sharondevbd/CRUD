@@ -17,9 +17,9 @@ namespace CodeFirstMasterDetails.Models
 		public DateTime Birthday { get; set; }
 		public int TotalExp { get; set; }
 		[ValidateNever]
-		public string PicPath { get; set; }
+		public string PicPath { get; set; } = null;
 		[NotMapped]
-		public IFormFile Picture { get; set; }
+		public IFormFile Picture { get; set; } = null;
 		public bool IsAvilable { get; set; }
 		public List<ApplicantExprience> Exprience { get;set; }
 	}

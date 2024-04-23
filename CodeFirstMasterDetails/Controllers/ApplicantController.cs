@@ -105,7 +105,6 @@ namespace CodeFirstMasterDetails.Controllers
 					applicant.Name = ViewModel.Name;
 					applicant.Birthday = ViewModel.Birthday;
 					applicant.TotalExp = ViewModel.TotalExp;
-					applicant.PicPath = ViewModel.PicPath;
 					applicant.Picture = ViewModel.Picture;
 					applicant.IsAvilable = ViewModel.IsAvilable;
 					applicant.Exprience = ViewModel.Exprience;
