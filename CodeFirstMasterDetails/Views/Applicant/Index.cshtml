@@ -51,13 +51,36 @@
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
+        
         <tr>
-            
+            <td>
+        <div class="col-md-8">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Company</th>
+                                <th>Designation</th>
+                                <th>Year Of Exp</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < item.Exprience.Count; i++)
+                            {   
+                               <tr>
+                                <td>@item.Exprience[i].Company</td>
+                                <td>@item.Exprience[i].Designation</td>
+                                <td>@item.Exprience[i].YearOfExp</td>
+                            </tr> 
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                </td>
             </tr>
-}
+            }
     </tbody>
 </table>
+

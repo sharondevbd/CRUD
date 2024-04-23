@@ -1,6 +1,7 @@
 ﻿using CodeFirstMasterDetails.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Packaging.Signing;
 using NuGet.Protocol.Plugins;
 
 namespace CodeFirstMasterDetails.Controllers
@@ -90,27 +91,53 @@ namespace CodeFirstMasterDetails.Controllers
 		public async Task<IActionResult> Edit(Applicant ViewModel, string btn)
 		{
 
-			var applicant = await db.Applicants.FindAsync(ViewModel.Id);
-
+            var applicant = db.Applicants.Include(m => m.Exprience).Where(m => m.Id.Equals(ViewModel.Id)).FirstOrDefault();
+            //var applicant = await db.Applicants.FindAsync(ViewModel.Id)
 			if (btn == "Add")
 			{
-				applicant.Exprience.Add(new ApplicantExprience());
+				ViewModel.Exprience.Add(new ApplicantExprience());
 			}
-
 			if (btn == "Edit")
 			{
-
 				if (applicant != null)
 				{
 					applicant.Name = ViewModel.Name;
 					applicant.Birthday = ViewModel.Birthday;
-					applicant.TotalExp = ViewModel.TotalExp;
-					applicant.Picture = ViewModel.Picture;
+					applicant.TotalExp = ViewModel.Exprience.Sum(i => i.YearOfExp);
 					applicant.IsAvilable = ViewModel.IsAvilable;
 					applicant.Exprience = ViewModel.Exprience;
-					await db.SaveChangesAsync();
+
+					if (ViewModel.Picture != null)
+					{
+						string extpic = Path.GetExtension(ViewModel.Picture.FileName);
+						if (extpic == ".jpg" || extpic == ".png" || extpic == ".jpeg")
+						{
+
+                    var ext = Path.GetExtension(ViewModel.Picture.FileName);
+					var rootPath = this.environment.ContentRootPath;
+					var fileToSave = Path.Combine(rootPath, "wwwroot/Pictures", ViewModel.Picture.FileName);
+
+					using (var fileStream = new FileStream(fileToSave, FileMode.Create))
+					{
+					await	ViewModel.Picture.CopyToAsync(fileStream); }
+						applicant.PicPath = "~/Pictures/" + ViewModel.Picture.FileName;
+					} else
+						{
+							ModelState.AddModelError("error", "Invalid Picture");
+						}
+
+                    } else
+					{
+						applicant.Picture = applicant.Picture;
+					}
+
+
+			if(	await db.SaveChangesAsync() > 0)
+					{
+                        return RedirectToAction("index");
+                    }
 				}
-				return RedirectToAction("index");
+				
 			}
 			return View(ViewModel);
 		}
@@ -119,10 +146,10 @@ namespace CodeFirstMasterDetails.Controllers
      //               string ext = Path.GetExtension(applicant.Picture.FileName);
      //               if (ext == ".jpg" || ext == ".png")
      //               {
-     //                   applicant.TotalExp = applicant.Exprience.Sum(m => m.YearOfExp);
+     //                applicant.TotalExp = applicant.Exprience.Sum(m => m.YearOfExp);
 
-     //                   if (applicant.Picture != null)
-     //                   {
+     //                if (applicant.Picture != null)
+     //                {
      //                       // var ext = Path.GetExtension(faculty.Picture.FileName);
      //                       var rootPath = this.environment.ContentRootPath;
      //                       var fileToSave = Path.Combine(rootPath, "wwwroot/Pictures", applicant.Picture.FileName);
