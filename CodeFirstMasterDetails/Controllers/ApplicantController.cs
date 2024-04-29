@@ -149,7 +149,14 @@ namespace CodeFirstMasterDetails.Controllers
 			if (id != null)
 			{
 				var user = db.Applicants.Find(id);
+				string picName = user.PicPath.Replace('~', ' ').Trim();
 				db.Applicants.Remove(user);
+				string rootPath = this.environment.ContentRootPath;
+				var fileModel = rootPath + "wwwroot" + picName;
+				if (System.IO.File.Exists(fileModel))
+				{
+					System.IO.File.Delete(fileModel);
+				}
 				db.SaveChanges();
 			}
             return RedirectToAction("Index");
