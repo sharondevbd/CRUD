@@ -19,7 +19,7 @@ namespace CodeFirstMasterDetails.Models
 		[ValidateNever]
 		public string PicPath { get; set; } = null;
 		[NotMapped]
-		public IFormFile Picture { get; set; } = null;
+		public IFormFile? Picture { get; set; } = null;
 		public bool IsAvilable { get; set; }
 		public List<ApplicantExprience> Exprience { get;set; }
 	}

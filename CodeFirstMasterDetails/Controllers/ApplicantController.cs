@@ -141,51 +141,6 @@ namespace CodeFirstMasterDetails.Controllers
 			}
 			return View(ViewModel);
 		}
-     //           if (applicant.Picture != null)
-     //           {
-     //               string ext = Path.GetExtension(applicant.Picture.FileName);
-     //               if (ext == ".jpg" || ext == ".png")
-     //               {
-     //                applicant.TotalExp = applicant.Exprience.Sum(m => m.YearOfExp);
-
-     //                if (applicant.Picture != null)
-     //                {
-     //                       // var ext = Path.GetExtension(faculty.Picture.FileName);
-     //                       var rootPath = this.environment.ContentRootPath;
-     //                       var fileToSave = Path.Combine(rootPath, "wwwroot/Pictures", applicant.Picture.FileName);
-     //                       using (var fileStream = new FileStream(fileToSave, FileMode.Create))
-     //                       {
-     //                           applicant.Picture.CopyToAsync(fileStream).Wait();
-     //                       }
-     //                      applicant.PicPath = "~/Pictures/" + applicant.Picture.FileName;
-
-     //                       db.Applicants.Add(applicant);
-     //                   }
-     //                   else
-     //                   {
-     //                       ModelState.AddModelError("", "Please Provide Profile Picture");
-     //                       return View(applicant);
-     //                   }
-     //               } //if ext jpg
-					//applicant.PicPath = applicant.PicPath;
-
-					//db.Applicants.RemoveRange(db.Applicants.Where(s => s.Id == applicant.Id));
-					//db.SaveChanges();
-
-					//applicant.Exprience = applicant.Exprience;
-
-     //               db.Entry(applicant).State = EntityState.Modified;
-     //               if (db.SaveChanges() > 0)
-     //               {
-     //                   return RedirectToAction("Index");
-     //               }
-
-     //           } //if-pic	
-     //       }
-     //       return View(applicant);
-     //   }
-
-
 
 
 
@@ -203,3 +158,4 @@ namespace CodeFirstMasterDetails.Controllers
     }
 }
 
+//Final
